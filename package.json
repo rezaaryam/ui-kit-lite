@@ -1,0 +1,14 @@
+{
+  "name": "ui-kit-lite",
+  "version": "0.1.0",
+  "description": "Komponen UI ringan berbasis CSS dan JavaScript murni, tanpa framework.",
+  "main": "src/ui-kit.js",
+  "files": ["src/"],
+  "scripts": {
+    "test": "node --test test/ui-kit.test.js"
+  },
+  "keywords": ["ui", "css", "components", "vanilla-js"],
+  "author": "Reza Arya Maulana",
+  "license": "MIT",
+  "engines": { "node": ">=18" }
+}

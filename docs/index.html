@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ui-kit-lite · Demo</title>
+  <link rel="stylesheet" href="../src/ui-kit.css">
+  <style>
+    body { margin: 0; font-family: var(--uk-font); background: var(--uk-surface); color: var(--uk-text); }
+    main { max-width: 880px; margin: 0 auto; padding: 48px 20px 80px; }
+    h1 { font-size: clamp(32px, 6vw, 48px); margin: 0 0 8px; }
+    h2 { font-size: 22px; margin: 48px 0 16px; }
+    .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .stack { display: grid; gap: 12px; }
+    .toggle { margin-left: auto; }
+  </style>
+</head>
+<body>
+<main>
+  <div class="row">
+    <div style="flex:1"><h1>ui-kit-lite</h1><p style="color:var(--uk-text-muted);margin:0">Komponen dasar dengan CSS dan JavaScript murni.</p></div>
+    <button class="uk-btn uk-btn--secondary uk-btn--sm toggle" id="theme" type="button">Ganti tema</button>
+  </div>
+
+  <h2>Tombol</h2>
+  <div class="row">
+    <button class="uk-btn uk-btn--primary" type="button">Primer</button>
+    <button class="uk-btn uk-btn--secondary" type="button">Sekunder</button>
+    <button class="uk-btn uk-btn--ghost" type="button">Ghost</button>
+    <button class="uk-btn uk-btn--primary" type="button" disabled>Nonaktif</button>
+  </div>
+  <div class="row" style="margin-top:12px">
+    <button class="uk-btn uk-btn--primary uk-btn--sm" type="button">Kecil</button>
+    <button class="uk-btn uk-btn--primary uk-btn--lg" type="button">Besar</button>
+  </div>
+
+  <h2>Badge</h2>
+  <div class="row" id="badges"></div>
+
+  <h2>Kartu</h2>
+  <div class="grid">
+    <article class="uk-card"><h3 class="uk-card__title">Ringan</h3><p class="uk-card__body">Tanpa dependensi dan tanpa proses build.</p></article>
+    <article class="uk-card"><h3 class="uk-card__title">Aksesibel</h3><p class="uk-card__body">Fokus terlihat dan dukungan mode gelap otomatis.</p></article>
+  </div>
+
+  <h2>Alert</h2>
+  <div class="stack" id="alerts"></div>
+</main>
+
+<script src="../src/ui-kit.js"></script>
+<script>
+  var badges = [["Baru", "accent"], ["Stabil", "success"], ["Perhatian", "warning"], ["Gagal", "danger"], ["Umum", "neutral"]];
+  document.getElementById("badges").innerHTML = badges.map(function (b) {
+    return UIKit.renderBadge(b[0], b[1]);
+  }).join("");
+
+  document.getElementById("alerts").innerHTML = [
+    UIKit.renderAlert({ type: "info", title: "Info", message: "Ini pesan informasi." }),
+    UIKit.renderAlert({ type: "success", message: "Data berhasil disimpan." }),
+    UIKit.renderAlert({ type: "warning", message: "Koneksi lambat, coba lagi nanti." }),
+    UIKit.renderAlert({ type: "danger", message: "Gagal memuat data." })
+  ].join("");
+
+  var t = document.getElementById("theme");
+  t.addEventListener("click", function () {
+    var root = document.documentElement;
+    root.setAttribute("data-theme", root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>
